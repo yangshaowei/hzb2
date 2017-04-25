@@ -15,6 +15,7 @@ import com.cbs.hzb.R;
 
 public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener {
 
+    //what wrong
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
