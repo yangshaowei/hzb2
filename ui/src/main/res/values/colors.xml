@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!-- 标题栏文字按下颜色 -->
+    <color name="tv_title_color_pressed">#ff30C4C2</color>
+    <color name="tv_title_color">#ff050505</color>
+
+    <!-- bar 背景颜色-->
+    <color name="common_action_bar_bg">#FF30C5C3</color>
+
+    <color name="colorCyanPrimary">#30c5c3</color>
+    <color name="colorCyanPrimaryDark">#2E7D32</color>
+    <color name="colorCyanAccent">#ff635d</color>
+    <color name="colorCyanPrimaryCenter">#3c3c3c</color>
+
+    <color name="black_80_pecent">#cc000000</color>
+    <color name="color_4991fb">#4991fb</color>
+    <color name="color_e5e5e5">#e5e5e5</color>
+    <color name="login_color_7c7c7c">#7c7c7c</color>
+    <color name="login_color_b6d3fd">#b6d3fd</color>
+    <color name="login_color_92acd3">#92acd3</color>
+    <color name="login_color_ccdd21">#ccdd21</color>
+    <color name="color_f9f9f9">#f9f9f9</color>
+    <color name="color_f7f8fa">#f7f8fa</color>
+    <color name="color_e5e5e4">#e5e5e4</color>
+    <color name="color_ff3936">#ff3936</color>
+</resources>
