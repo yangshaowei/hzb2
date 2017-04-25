@@ -18,6 +18,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     //what wrong
     //what up
     //what fuck
+    //what test
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
