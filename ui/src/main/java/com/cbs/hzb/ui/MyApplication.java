@@ -8,7 +8,7 @@ import android.graphics.Bitmap;
 import android.os.Environment;
 
 import com.cbs.hzb.R;
-import com.cbs.net.okserver.download.DownloadService;
+import com.cbs.okserver.download.DownloadService;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheEntity;
 import com.lzy.okgo.cache.CacheMode;
@@ -17,6 +17,7 @@ import com.lzy.okgo.model.HttpHeaders;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+
 
 import java.io.File;
 
@@ -41,7 +42,7 @@ public class MyApplication extends Application {
         initOkHttpUtils();
         setDownLoadPath();//在okgo初始化之后
 
-        channel=getApplicationMetaValue("UMENG_CHANNEL");
+//        channel=getApplicationMetaValue("UMENG_CHANNEL");
 
     }
 
