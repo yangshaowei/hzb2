@@ -41,6 +41,7 @@ public class MainActivity extends BaseActivity{
         setContentView(R.layout.activity_main);
     }
 
+    //mm
     @Override
     protected void findViews() {
         mHomeView = (HomeTabViewPager) findViewById(R.id.home_tag_view_pager);
