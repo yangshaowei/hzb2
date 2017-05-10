@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 
+import com.cbs.domain.RegisterRequestBody;
 import com.cbs.hzb.R;
 import com.cbs.hzb.ui.adapt.HomeFragmentAdapter;
 import com.cbs.hzb.ui.fragments.BillFragment;
@@ -12,6 +13,7 @@ import com.cbs.hzb.ui.fragments.CommunityFragment;
 import com.cbs.hzb.ui.fragments.DutyFragment;
 import com.cbs.hzb.ui.fragments.MeFragment;
 import com.cbs.hzb.ui.view.HomeTabViewPager;
+import com.cbs.impl.RegisterImpl;
 
 import java.util.ArrayList;
 

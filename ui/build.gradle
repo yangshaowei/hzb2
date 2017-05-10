@@ -31,4 +31,5 @@ dependencies {
     compile project(':common')
     compile project(':community')
     compile project(':duty')
+    compile project(':net')
 }
