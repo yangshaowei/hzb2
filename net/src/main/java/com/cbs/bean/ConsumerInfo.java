@@ -9,6 +9,15 @@ public class ConsumerInfo {
     private String type;
     private String sum;
     private String time;
+    private String describe;
+
+    public String getDescribe() {
+        return describe;
+    }
+
+    public void setDescribe(String describe) {
+        this.describe = describe;
+    }
 
     public String getType() {
         return type;

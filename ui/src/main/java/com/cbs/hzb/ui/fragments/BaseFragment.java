@@ -25,6 +25,12 @@ public abstract class BaseFragment extends Fragment {
         initData();
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        initData();
+    }
+
     /**
      * 在此方法中初始化数据
      */
