@@ -34,6 +34,7 @@ public class MainActivity extends BaseActivity{
     private DutyFragment dutyFragment;
     private MeFragment meFragment;
 
+    //m
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
