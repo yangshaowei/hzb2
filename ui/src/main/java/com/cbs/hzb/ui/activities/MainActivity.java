@@ -34,6 +34,7 @@ public class MainActivity extends BaseActivity{
     private DutyFragment dutyFragment;
     private MeFragment meFragment;
 
+    //x
     //m
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +43,7 @@ public class MainActivity extends BaseActivity{
     }
 
     //mm
+    //xx
     @Override
     protected void findViews() {
         mHomeView = (HomeTabViewPager) findViewById(R.id.home_tag_view_pager);
