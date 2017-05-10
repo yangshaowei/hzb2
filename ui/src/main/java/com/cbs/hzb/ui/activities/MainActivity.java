@@ -33,17 +33,13 @@ public class MainActivity extends BaseActivity{
     private CommunityFragment communityFragment;
     private DutyFragment dutyFragment;
     private MeFragment meFragment;
-
-    //x
-    //m
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
 
-    //mm
-    //xx
     @Override
     protected void findViews() {
         mHomeView = (HomeTabViewPager) findViewById(R.id.home_tag_view_pager);
