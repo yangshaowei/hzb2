@@ -4,6 +4,8 @@ import android.content.Context;
 
 import com.cbs.bill.data.BillList;
 import com.cbs.bill.model.SimpleBill;
+import com.cbs.common.utils.BillMessageDbUtil;
+import com.cbs.hzb.ui.adapt.BillAdapter;
 import com.cbs.hzb.ui.contracts.BillContracts;
 
 /**
@@ -19,7 +21,13 @@ public class BillPresenterImpl implements BillContracts.Presenter{
 
     @Override
     public BillList getBillList() {
-        BillList bills = new BillList();
-        return bills;
+        return BillList.getBillList();
     }
+
+    @Override
+    public void notifyDataChange(Context context, BillAdapter adapter) {
+        BillList.getBillList().cacheBillList(context);
+        adapter.notifyDataSetChanged();
+    }
+
 }

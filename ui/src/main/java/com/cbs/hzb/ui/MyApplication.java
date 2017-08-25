@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Environment;
 
+import com.cbs.bill.data.BillList;
 import com.cbs.hzb.R;
 import com.cbs.okserver.download.DownloadService;
 import com.lzy.okgo.OkGo;
@@ -37,13 +38,17 @@ public class MyApplication extends Application {
 
         mContext = this;
 
+        startCacheLoading();
         initImageLoader();
-
         initOkHttpUtils();
         setDownLoadPath();//在okgo初始化之后
 
 //        channel=getApplicationMetaValue("UMENG_CHANNEL");
 
+    }
+
+    private void startCacheLoading(){
+        BillList.getBillList().loadBillListFromNet(getContext());
     }
 
     private void initImageLoader(){

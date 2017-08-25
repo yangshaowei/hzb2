@@ -1,20 +1,25 @@
 package com.cbs.bill.model;
 
 import android.content.Context;
+import android.os.Parcel;
+import android.os.Parcelable;
 
+import java.net.InetAddress;
+import java.util.ArrayList;
 import java.util.List;
+import com.cbs.bean.ConsumerInfo;
 
 /**
  * Created by yangshaowei on 2017/5/10.
  */
 
-public class SimpleBill extends ShareBill{
+public class SimpleBill extends ShareBill implements Parcelable {
 
     private String dayConsume;
     private String monConsume;
     private String allConsume;
     private String title;
-    private List<ConsumerInfo> consumerInfos;
+    private List<ConsumerInfo> consumerInfos = new ArrayList<>();
 
     public String getDayConsume() {
         return dayConsume;
@@ -55,4 +60,79 @@ public class SimpleBill extends ShareBill{
     public void setConsumerInfos(List<ConsumerInfo> consumerInfos) {
         this.consumerInfos = consumerInfos;
     }
+
+    public SimpleBill(){
+
+    }
+
+    protected SimpleBill(Parcel in) {
+        dayConsume = in.readString();
+        monConsume = in.readString();
+        allConsume = in.readString();
+        title = in.readString();
+        id = in.readString();
+        holdersId = in.readString();
+        creatTime = in.readString();
+
+        int consumerInfosSize = in.readInt();
+        for(int i = 0; i < consumerInfosSize; i++){
+            consumerInfos.get(i).setHoldersId(in.readString());
+            consumerInfos.get(i).setType(in.readString());
+            consumerInfos.get(i).setSum(in.readString());
+            consumerInfos.get(i).setTime(in.readString());
+            consumerInfos.get(i).setDescribe(in.readString());
+        }
+
+        String b = in.readString();
+        if(b.equals("true")){
+            isBalance = true;
+        }else {
+            isBalance = false;
+        }
+    }
+
+    public static final Creator<SimpleBill> CREATOR = new Creator<SimpleBill>() {
+        @Override
+        public SimpleBill createFromParcel(Parcel in) {
+            return new SimpleBill(in);
+        }
+
+        @Override
+        public SimpleBill[] newArray(int size) {
+            return new SimpleBill[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(dayConsume);
+        dest.writeString(monConsume);
+        dest.writeString(allConsume);
+        dest.writeString(title);
+        dest.writeString(id);
+        dest.writeString(holdersId);
+        dest.writeString(creatTime);
+
+        if(consumerInfos == null){
+            dest.writeInt(0);
+        }else {
+            dest.writeInt(consumerInfos.size());
+            for (ConsumerInfo c : consumerInfos) {
+                dest.writeString(c.getHoldersId());
+                dest.writeString(c.getType());
+                dest.writeString(c.getSum());
+                dest.writeString(c.getTime());
+                dest.writeString(c.getDescribe());
+            }
+        }
+
+        dest.writeString(String.valueOf(isBalance));
+    }
+
+
 }

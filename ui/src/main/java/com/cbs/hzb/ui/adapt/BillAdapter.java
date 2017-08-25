@@ -43,6 +43,7 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.ViewHolder> {
         holder.tv_id.setText(simpleBill.getId());
         holder.tv_time.setText(simpleBill.getCreatTime());
         holder.tv_holdersId.setText(simpleBill.getHoldersId());
+        holder.tv_title.setText(simpleBill.getTitle());
         holder.tv_delect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,6 +90,7 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.ViewHolder> {
         TextView tv_balance;
         TextView tv_share;
         TextView tv_delect;
+        TextView tv_title;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -99,6 +101,7 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.ViewHolder> {
             tv_balance = (TextView) itemView.findViewById(R.id.tv_balance);
             tv_share = (TextView) itemView.findViewById(R.id.tv_share);
             tv_delect = (TextView) itemView.findViewById(R.id.tv_delect);
+            tv_title = (TextView) itemView.findViewById(R.id.tv_title);
         }
 
         @Override

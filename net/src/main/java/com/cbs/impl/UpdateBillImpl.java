@@ -2,13 +2,8 @@ package com.cbs.impl;
 
 import com.cbs.Constant.AppConstant;
 import com.cbs.bean.BillItem;
-import com.cbs.domain.ResponeBody;
 import com.cbs.domain.UpdateBillRequestBody;
 import com.cbs.model.RequestModel;
-import com.google.gson.Gson;
-
-import okhttp3.Call;
-import okhttp3.Response;
 
 /**
  * Created by yangshaowei on 2017/5/9.

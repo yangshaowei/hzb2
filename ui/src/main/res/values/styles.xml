@@ -24,4 +24,11 @@
         <item name="colorAccent">@color/colorCyanAccent</item>
 
     </style>
+
+    <style name="contact_delect_style" parent="android:style/Theme.Dialog">
+        <!-- 背景透明 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 没有标题 -->
+        <item name="android:windowNoTitle">true</item>
+    </style>
 </resources>

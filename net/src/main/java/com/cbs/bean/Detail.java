@@ -8,12 +8,12 @@ import java.util.List;
 
 public class Detail {
 
-    private String dayConsume;
-    private String monConsume;
-    private String allConsume;
-    private String title;
-    private String createTime;
-    private List<ConsumerInfo> consumerInfos;
+    private String dayConsume = null;
+    private String monConsume = null;
+    private String allConsume = null;
+    private String title = null;
+    private String createTime = null;
+    private List<ConsumerInfo> consumerInfos = null;
 
     public String getDayConsume() {
         return dayConsume;

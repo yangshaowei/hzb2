@@ -6,7 +6,7 @@ import com.cbs.bean.Data;
  * Created by yangshaowei on 2017/5/9.
  */
 
-public class ResponeBody {
+public class ResponeData {
 
     private String flag;
     private Data data;

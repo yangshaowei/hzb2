@@ -7,25 +7,25 @@ import com.cbs.bean.Detail;
  */
 
 public class BillItem {
-    private String id;
-    private String holdersId;  //持有者,以逗号分隔
-    private Boolean isBalance; //是否结算
-    private Detail detail;   //详细描述
+    private String pid;
+    private String holdersId = null;  //持有者,以逗号分隔
+    private boolean isBalance = false; //是否结算
+    private Detail detail = null;   //详细描述
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public Boolean getBalance() {
+    public boolean isBalance() {
         return isBalance;
     }
 
-    public void setBalance(Boolean balance) {
+    public void setBalance(boolean balance) {
         isBalance = balance;
+    }
+
+    public String getId() {
+        return pid;
+    }
+
+    public void setId(String id) {
+        this.pid = id;
     }
 
     public Detail getDetail() {
