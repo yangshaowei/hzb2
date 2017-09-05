@@ -1,9 +1,6 @@
 package com.cbs.hzb.ui.fragments;
 
-import android.content.Intent;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -24,7 +21,7 @@ import com.cbs.common.utils.PreferenceHelper.PreferenceConstant;
 import com.cbs.common.utils.SharePreferenceUtils;
 import com.cbs.domain.ResponeData;
 import com.cbs.hzb.R;
-import com.cbs.hzb.ui.activities.ConsumerInfosDetail;
+import com.cbs.hzb.ui.activities.ConsumerInfosDetailActivity;
 import com.cbs.hzb.ui.adapt.BillAdapter;
 import com.cbs.hzb.ui.contracts.BillContracts;
 import com.cbs.hzb.ui.dialogs.TwoButtontContentDialog;
@@ -34,11 +31,8 @@ import com.cbs.impl.CreatBillImpl;
 import com.cbs.model.RequestModel;
 import com.google.gson.Gson;
 
-import java.util.zip.Inflater;
-
 import okhttp3.Call;
 import okhttp3.Response;
-import okhttp3.ResponseBody;
 
 /**
  * Created by yangshaowei on 2017/4/12.
@@ -72,7 +66,7 @@ public class BillFragment extends BaseFragment implements View.OnClickListener{
                 //跳转详细信息
 //                Toast.makeText(getContext(), String.valueOf(position) + " 被点击", Toast.LENGTH_LONG).show();
                 SimpleBill simpleBill = billAdapter.getItem(position);
-                ConsumerInfosDetail.show(getContext(), simpleBill);
+                ConsumerInfosDetailActivity.show(getContext(), simpleBill);
             }
         });
         recyclerView.setAdapter(billAdapter);

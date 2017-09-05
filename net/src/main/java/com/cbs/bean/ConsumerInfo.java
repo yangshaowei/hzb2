@@ -12,7 +12,7 @@ public class ConsumerInfo implements Parcelable {
     private String type = null;
     private String sum = null;
     private String time = null;
-    private String describe = null;
+    private String des = null;
 
     public ConsumerInfo(){
 
@@ -23,7 +23,7 @@ public class ConsumerInfo implements Parcelable {
         type = in.readString();
         sum = in.readString();
         time = in.readString();
-        describe = in.readString();
+        des = in.readString();
     }
 
     public static final Creator<ConsumerInfo> CREATOR = new Creator<ConsumerInfo>() {
@@ -39,11 +39,11 @@ public class ConsumerInfo implements Parcelable {
     };
 
     public String getDescribe() {
-        return describe;
+        return des;
     }
 
     public void setDescribe(String describe) {
-        this.describe = describe;
+        this.des = describe;
     }
 
     public String getType() {
@@ -89,6 +89,6 @@ public class ConsumerInfo implements Parcelable {
         dest.writeString(type);
         dest.writeString(sum);
         dest.writeString(time);
-        dest.writeString(describe);
+        dest.writeString(des);
     }
 }

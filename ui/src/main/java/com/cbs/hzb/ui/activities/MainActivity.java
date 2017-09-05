@@ -1,10 +1,12 @@
 package com.cbs.hzb.ui.activities;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 
+import com.cbs.bill.data.BillList;
 import com.cbs.domain.RegisterRequestBody;
 import com.cbs.hzb.R;
 import com.cbs.hzb.ui.adapt.HomeFragmentAdapter;
@@ -72,6 +74,8 @@ public class MainActivity extends BaseActivity{
         });
         initFragment();
         setToolBarTitle(0);
+
+        startCacheLoading();
     }
 
     private void initToolBar() {
@@ -136,4 +140,10 @@ public class MainActivity extends BaseActivity{
         super.onStop();
     }
 
+    /**
+     * 加载缓存
+     */
+    private void startCacheLoading() {
+        BillList.getBillList().loadBillListFromNet(this);
+    }
 }

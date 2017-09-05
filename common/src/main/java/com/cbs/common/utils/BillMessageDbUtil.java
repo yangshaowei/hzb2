@@ -182,7 +182,7 @@ public class BillMessageDbUtil {
                 ResponeData responeData = gson.fromJson(s, ResponeData.class);
                 Data data = responeData.getData();
                 for(BillItem billItem : data.getBillItems()){
-                    insert(data.getBillItem());
+                    insert(billItem);
                 }
             }
 

@@ -39,5 +39,10 @@ public interface BillContracts {
 		 * 通知数据改变
 		 */
 		public void notifyDataChange(Context context, BillAdapter adapter);
+
+		/**
+		 * 加载缓存
+		 */
+		public void startCacheLoading(Context context);
 	}
 }

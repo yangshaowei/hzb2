@@ -48,7 +48,7 @@ public class MyApplication extends Application {
     }
 
     private void startCacheLoading(){
-        BillList.getBillList().loadBillListFromNet(getContext());
+
     }
 
     private void initImageLoader(){

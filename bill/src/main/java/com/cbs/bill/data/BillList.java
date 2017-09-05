@@ -31,9 +31,13 @@ public class BillList extends ArrayList<SimpleBill> {
         add(simpleBill);
     }
 
+    /**
+     * 网络，数据库，缓存同步
+     * @param context
+     */
     public void loadBillListFromNet(Context context){
         BillMessageDbUtil billMessageDbUtil = new BillMessageDbUtil(context);
-//        billMessageDbUtil.syncDb(); //从网络更新数据库
+        billMessageDbUtil.syncDb(); //从网络更新数据库
         List<BillItem> billItemList = billMessageDbUtil.queryBillItemAll();
 
         billList.clear();

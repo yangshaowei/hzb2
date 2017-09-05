@@ -1,5 +1,6 @@
 package com.cbs.impl;
 
+import com.cbs.Constant.AppConstant;
 import com.cbs.domain.SearchBillRequestBody;
 import com.cbs.model.RequestModel;
 
@@ -27,6 +28,6 @@ public class SearchBillAllImpl extends RequestModel {
 
     @Override
     public String getURL() {
-        return null;
+        return AppConstant.SearchAllUrl;
     }
 }
