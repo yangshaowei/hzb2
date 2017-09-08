@@ -81,6 +81,7 @@ public class SimpleBill extends ShareBill implements Parcelable {
             consumerInfos.get(i).setSum(in.readString());
             consumerInfos.get(i).setTime(in.readString());
             consumerInfos.get(i).setDescribe(in.readString());
+            consumerInfos.get(i).setCid(in.readString());
         }
 
         String b = in.readString();
@@ -128,6 +129,7 @@ public class SimpleBill extends ShareBill implements Parcelable {
                 dest.writeString(c.getSum());
                 dest.writeString(c.getTime());
                 dest.writeString(c.getDescribe());
+                dest.writeString(c.getCid());
             }
         }
 

@@ -16,7 +16,6 @@ import com.cbs.common.db.orm.annotation.Unique;
 public class ConsumerInfos extends BaseModel{
 	public static final String TABLE_NAME = "ConsumerInfos";
 
-	@Unique
 	@Column(name = COLUMN_ID)
 	protected int id = DEFAULT_VALUE_INTEGER;
 
@@ -33,7 +32,18 @@ public class ConsumerInfos extends BaseModel{
 	protected String sum = DEFAULT_VALUE_STRING;
 
 	@Column(name = COLUMN_TIME)
+	protected String cid = DEFAULT_VALUE_STRING;
+
+	@Column(name = COLUMN_CID)
 	protected String time = DEFAULT_VALUE_STRING;
+
+	public String getCid() {
+		return cid;
+	}
+
+	public void setCid(String cid) {
+		this.cid = cid;
+	}
 
 	public int getId() {
 		return id;

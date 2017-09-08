@@ -6,12 +6,14 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.cbs.bean.BillItem;
+import com.cbs.bean.ConsumerInfo;
 import com.cbs.bean.Data;
 import com.cbs.bean.Detail;
 import com.cbs.common.db.dao.BillDao;
 import com.cbs.common.db.orm.DBHelper;
 import com.cbs.common.model.BaseModel;
 import com.cbs.common.model.BillMessage;
+import com.cbs.common.model.ConsumerInfos;
 import com.cbs.common.utils.PreferenceHelper.PreferenceConstant;
 import com.cbs.domain.ResponeData;
 import com.cbs.impl.SearchBillAllImpl;
@@ -55,6 +57,12 @@ public class BillMessageDbUtil {
             values.put(BaseModel.COLUMN_TITLE, billItem.getDetail().getTitle());
             values.put(BaseModel.COLUMN_CREATETIME, billItem.getDetail().getCreateTime());
             dbw.insert(BillMessage.TABLE_NAME, null, values);
+
+            //同步更新ConsumerInfos表
+            if(billItem.getDetail().getConsumerInfos() != null && billItem.getDetail().getConsumerInfos().size()>0){
+                ConsumerInfosDbUtil consumerInfosDbUtil = new ConsumerInfosDbUtil(context);
+                consumerInfosDbUtil.insertAll(billItem.getId(), billItem.getDetail().getConsumerInfos());
+            }
         }
     }
 
@@ -143,6 +151,11 @@ public class BillMessageDbUtil {
                     String allConsume = cursor.getString(cursor.getColumnIndex(BaseModel.COLUMN_ALLCONSUME));
                     String title = cursor.getString(cursor.getColumnIndex(BaseModel.COLUMN_TITLE));
                     String creatTime = cursor.getString(cursor.getColumnIndex(BaseModel.COLUMN_CREATETIME));
+                    //ConsumerInfos
+                    ConsumerInfosDbUtil consumerInfosDbUtil = new ConsumerInfosDbUtil(context);
+                    List<ConsumerInfos> consumerInfosList = consumerInfosDbUtil.queryConsumerInfos(id);
+                    HelperUtil helperUtil = new HelperUtil(context);
+                    List<ConsumerInfo> consumerInfoList = helperUtil.toConsumerInfo(consumerInfosList);
 
                     billItem.setId(id);
                     billItem.setHoldersId(holderId);
@@ -153,6 +166,7 @@ public class BillMessageDbUtil {
                     detail.setAllConsume(allConsume);
                     detail.setTitle(title);
                     detail.setCreateTime(creatTime);
+                    detail.setConsumerInfos(consumerInfoList);
                     billItem.setDetail(detail);
                     billItemList.add(billItem);
                 }
@@ -168,14 +182,29 @@ public class BillMessageDbUtil {
     }
 
     /**
+     * 同步消费记录表
+     * @param billItemList
+     */
+    private void syncConsumerInfosDb(List<BillItem> billItemList){
+        ConsumerInfosDbUtil consumerInfosDbUtil = new ConsumerInfosDbUtil(context);
+        consumerInfosDbUtil.delectAll();
+        for(BillItem billItem : billItemList){
+            List<ConsumerInfo> consumerInfoList = billItem.getDetail().getConsumerInfos();
+            consumerInfosDbUtil.insertAll(billItem.getId(), consumerInfoList);
+        }
+    }
+
+    /**
      * 数据库同步网络数据
      */
-    public void syncDb(){
+    public void syncDb(final SyncLoaderLisentner syncLoaderLisentner){
         SearchBillAllImpl searchBillAll = new SearchBillAllImpl((String) SharePreferenceUtils.getDBParam(context, PreferenceConstant.LOGIN_USERNAME, null),
                 (String) SharePreferenceUtils.getDBParam(context, PreferenceConstant.LOGIN_PASSWORD, null));
         searchBillAll.request(new RequestModel.RequestCallBack() {
             @Override
             public void onSuccess(String s, Call call, Response response) {
+                ConsumerInfosDbUtil consumerInfosDbUtil = new ConsumerInfosDbUtil(context);
+                consumerInfosDbUtil.delectAll();
                 delectAllBillItem();
 
                 Gson gson = new Gson();
@@ -184,6 +213,8 @@ public class BillMessageDbUtil {
                 for(BillItem billItem : data.getBillItems()){
                     insert(billItem);
                 }
+//                syncConsumerInfosDb(data.getBillItems());
+                syncLoaderLisentner.syncLoaderFinished();
             }
 
             @Override
@@ -191,5 +222,23 @@ public class BillMessageDbUtil {
 
             }
         });
+    }
+
+    /**
+     * 未使用
+     */
+    public static List<SyncLoaderLisentner> syncLoaderLisentners;
+    public void addSyncLoaderLisentner(SyncLoaderLisentner syncLoaderLisentner){
+        syncLoaderLisentners.add(syncLoaderLisentner);
+    }
+
+    public interface SyncLoaderLisentner{
+        public void syncLoaderFinished();
+    }
+
+    public void onDesdroy(){
+        if(syncLoaderLisentners != null){
+            syncLoaderLisentners.clear();
+        }
     }
 }

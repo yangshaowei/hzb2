@@ -91,4 +91,9 @@ public class BaseModel implements Serializable {
      */
     public static final String COLUMN_TIME = "time";
 
+    /**
+     * DB字段名
+     */
+    public static final String COLUMN_CID = "cid";
+
 }

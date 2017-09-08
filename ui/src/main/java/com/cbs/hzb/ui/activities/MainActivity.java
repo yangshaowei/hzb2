@@ -144,6 +144,11 @@ public class MainActivity extends BaseActivity{
      * 加载缓存
      */
     private void startCacheLoading() {
-        BillList.getBillList().loadBillListFromNet(this);
+        BillList.getBillList().loadBillListFromNet(this, new BillList.SyncLoadBillLisetner() {
+            @Override
+            public void loaderFinished() {
+
+            }
+        });
     }
 }

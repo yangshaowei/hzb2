@@ -3,6 +3,8 @@
     package="com.cbs.hzb">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:name="com.cbs.hzb.ui.MyApplication"
@@ -36,6 +38,10 @@
             android:screenOrientation="portrait"/>
 
         <activity android:name=".ui.activities.ConsumerInfosDetailActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".ui.activities.AddConsumerInfosActivity"
             android:windowSoftInputMode="adjustResize"
             android:screenOrientation="portrait"/>
     </application>

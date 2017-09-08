@@ -27,9 +27,9 @@ public class BillDao extends BasicDBDao {
                 String dbName = String.format(DbUtils.DB_NAME_MESSAGE, "");
 
                 //tigger test 将数据库放到sd卡，方便查看
-                if (BuildConfig.DEBUG) {
+//                if (BuildConfig.DEBUG) {
                     dbName = Environment.getExternalStorageDirectory() + "/hzb/db/" + dbName;
-                }
+//                }
                 mDb = new DBHelper(c, dbName, null, DbUtils.DB_VERSION,
                         DbUtils.DB_CLS_MESSAGE);
             }

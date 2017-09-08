@@ -38,16 +38,11 @@ public class MyApplication extends Application {
 
         mContext = this;
 
-        startCacheLoading();
         initImageLoader();
         initOkHttpUtils();
         setDownLoadPath();//在okgo初始化之后
 
 //        channel=getApplicationMetaValue("UMENG_CHANNEL");
-
-    }
-
-    private void startCacheLoading(){
 
     }
 

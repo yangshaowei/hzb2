@@ -6,6 +6,7 @@ package com.cbs.Constant;
 
 public class AppConstant {
 
+    public static final String Update = "/modify_bill";
     public static final String SearchAll = "/find_all_bill";
     public static final String CreatBill = "/add_bill";
     public static final String Login = "/login";
@@ -17,5 +18,5 @@ public class AppConstant {
     public static final String RegisterUrl = BASEURL+PORT+Register;
     public static final String LoginUrl = BASEURL+PORT+Login;
     public static final String SearchAllUrl = BASEURL+PORT+SearchAll;
-    public static final String UpdateBillUrl = "";
+    public static final String UpdateBillUrl = BASEURL+PORT+Update;
 }

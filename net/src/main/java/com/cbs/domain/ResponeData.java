@@ -8,16 +8,16 @@ import com.cbs.bean.Data;
 
 public class ResponeData {
 
-    private String flag;
+    private boolean flag;
     private Data data;
     private String errorCode;
     private String errorString;
 
-    public String getFlag() {
+    public boolean isFlag() {
         return flag;
     }
 
-    public void setFlag(String flag) {
+    public void setFlag(boolean flag) {
         this.flag = flag;
     }
 

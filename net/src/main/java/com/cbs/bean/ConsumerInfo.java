@@ -8,11 +8,29 @@ import android.os.Parcelable;
  */
 
 public class ConsumerInfo implements Parcelable {
+    private String id = null;  //表示属于哪个账单
     private String holdersId = null;
     private String type = null;
     private String sum = null;
     private String time = null;
     private String des = null;
+    private String cid = null;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getCid() {
+        return cid;
+    }
+
+    public void setCid(String cid) {
+        this.cid = cid;
+    }
 
     public ConsumerInfo(){
 
@@ -24,6 +42,7 @@ public class ConsumerInfo implements Parcelable {
         sum = in.readString();
         time = in.readString();
         des = in.readString();
+        cid = in.readString();
     }
 
     public static final Creator<ConsumerInfo> CREATOR = new Creator<ConsumerInfo>() {
@@ -90,5 +109,6 @@ public class ConsumerInfo implements Parcelable {
         dest.writeString(sum);
         dest.writeString(time);
         dest.writeString(des);
+        dest.writeString(cid);
     }
 }

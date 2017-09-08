@@ -8,7 +8,7 @@ import com.cbs.hzb.ui.adapt.BillAdapter;
 
 /**
  * Created by yangshaowei on 2017/3/22.
- * 搜索联系人
+ *
  */
 
 public interface BillContracts {

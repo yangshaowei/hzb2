@@ -31,29 +31,51 @@ public class BillList extends ArrayList<SimpleBill> {
         add(simpleBill);
     }
 
+    public interface SyncLoadBillLisetner{
+        public void loaderFinished();
+    }
+
+    public SimpleBill getSimpleBillById(String pid){
+        for(SimpleBill simpleBill : billList){
+            if(pid.equals(simpleBill.getId())){
+                return simpleBill;
+            }
+        }
+        return null;
+    }
+
     /**
      * 网络，数据库，缓存同步
      * @param context
      */
-    public void loadBillListFromNet(Context context){
-        BillMessageDbUtil billMessageDbUtil = new BillMessageDbUtil(context);
-        billMessageDbUtil.syncDb(); //从网络更新数据库
-        List<BillItem> billItemList = billMessageDbUtil.queryBillItemAll();
+    public void loadBillListFromNet(Context context, final SyncLoadBillLisetner syncLoadBillLisetner){
+        final BillMessageDbUtil billMessageDbUtil = new BillMessageDbUtil(context);
+        billMessageDbUtil.syncDb(new BillMessageDbUtil.SyncLoaderLisentner(){
 
-        billList.clear();
-        for(BillItem billItem : billItemList){
-            SimpleBill simpleBill  = new SimpleBill();
-            simpleBill.setHoldersId(billItem.getHoldersId());
-            simpleBill.setAllConsume(billItem.getDetail().getAllConsume());
-            simpleBill.setConsumerInfos(billItem.getDetail().getConsumerInfos());
-            simpleBill.setDayConsume(billItem.getDetail().getDayConsume());
-            simpleBill.setMonConsume(billItem.getDetail().getMonConsume());
-            simpleBill.setTitle(billItem.getDetail().getTitle());
-            simpleBill.setBalance(billItem.isBalance());
-            simpleBill.setCreatTime(billItem.getDetail().getCreateTime());
-            simpleBill.setId(billItem.getId());
-            billList.add(simpleBill);
-        }
+            @Override
+            public void syncLoaderFinished() {
+                //从网络更新数据库
+                List<BillItem> billItemList = billMessageDbUtil.queryBillItemAll();
+
+                billList.clear();
+                for(BillItem billItem : billItemList){
+                    SimpleBill simpleBill  = new SimpleBill();
+                    simpleBill.setHoldersId(billItem.getHoldersId());
+                    simpleBill.setAllConsume(billItem.getDetail().getAllConsume());
+                    simpleBill.setConsumerInfos(billItem.getDetail().getConsumerInfos());
+                    simpleBill.setDayConsume(billItem.getDetail().getDayConsume());
+                    simpleBill.setMonConsume(billItem.getDetail().getMonConsume());
+                    simpleBill.setTitle(billItem.getDetail().getTitle());
+                    simpleBill.setBalance(billItem.isBalance());
+                    simpleBill.setCreatTime(billItem.getDetail().getCreateTime());
+                    simpleBill.setId(billItem.getId());
+                    simpleBill.setConsumerInfos(billItem.getDetail().getConsumerInfos());
+                    billList.add(simpleBill);
+                }
+
+                syncLoadBillLisetner.loaderFinished();
+            }
+        });
     }
 
     /**
@@ -76,6 +98,7 @@ public class BillList extends ArrayList<SimpleBill> {
             simpleBill.setBalance(billItem.isBalance());
             simpleBill.setCreatTime(billItem.getDetail().getCreateTime());
             simpleBill.setId(billItem.getId());
+            simpleBill.setConsumerInfos(billItem.getDetail().getConsumerInfos());
             billList.add(simpleBill);
         }
     }

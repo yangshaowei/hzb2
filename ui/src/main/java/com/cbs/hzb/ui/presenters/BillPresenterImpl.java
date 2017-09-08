@@ -32,7 +32,7 @@ public class BillPresenterImpl implements BillContracts.Presenter{
 
     @Override
     public void startCacheLoading(Context context) {
-        BillList.getBillList().loadBillListFromNet(context);
+
     }
 
 }

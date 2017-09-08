@@ -1,5 +1,6 @@
 package com.cbs.bean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,7 +14,7 @@ public class Detail {
     private String allConsume = null;
     private String title = null;
     private String createTime = null;
-    private List<ConsumerInfo> consumerInfos = null;
+    private List<ConsumerInfo> consumerInfos = new ArrayList<ConsumerInfo>();
 
     public String getDayConsume() {
         return dayConsume;

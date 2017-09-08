@@ -1,5 +1,6 @@
 package com.cbs.hzb.ui.fragments;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -51,6 +52,7 @@ public class BillFragment extends BaseFragment implements View.OnClickListener{
         setHasOptionsMenu(true);
     }
 
+    @SuppressLint("NewApi")
     @Override
     public void initData() {
         bt_creat = (Button) getActivity().findViewById(R.id.bt_creat);
@@ -64,7 +66,6 @@ public class BillFragment extends BaseFragment implements View.OnClickListener{
             @Override
             public void onItemClick(View view, int position) {
                 //跳转详细信息
-//                Toast.makeText(getContext(), String.valueOf(position) + " 被点击", Toast.LENGTH_LONG).show();
                 SimpleBill simpleBill = billAdapter.getItem(position);
                 ConsumerInfosDetailActivity.show(getContext(), simpleBill);
             }
