@@ -75,7 +75,6 @@ public class MainActivity extends BaseActivity{
         initFragment();
         setToolBarTitle(0);
 
-        startCacheLoading();
     }
 
     private void initToolBar() {
@@ -140,15 +139,5 @@ public class MainActivity extends BaseActivity{
         super.onStop();
     }
 
-    /**
-     * 加载缓存
-     */
-    private void startCacheLoading() {
-        BillList.getBillList().loadBillListFromNet(this, new BillList.SyncLoadBillLisetner() {
-            @Override
-            public void loaderFinished() {
 
-            }
-        });
-    }
 }

@@ -40,7 +40,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:drawableTop="@drawable/home_tag_contacts_selector"
-            android:text="任务"
+            android:text="事务"
             android:textSize="@dimen/text_size_11"
             android:textColor="@color/home_tag_txt_selector" />
 

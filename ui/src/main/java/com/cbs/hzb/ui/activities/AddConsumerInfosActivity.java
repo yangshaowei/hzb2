@@ -78,8 +78,13 @@ public class AddConsumerInfosActivity extends BaseActivity{
                         Gson gson = new Gson();
                         ResponeData responeData = gson.fromJson(s, ResponeData.class);
                         if(responeData.isFlag()){
-                            Toast.makeText(AddConsumerInfosActivity.this,"添加成功",Toast.LENGTH_LONG).show();
-                            finish();
+                            BillList.getBillList().loadBillListFromNet(AddConsumerInfosActivity.this, new BillList.SyncLoadBillLisetner() {
+                                @Override
+                                public void loaderFinished() {
+                                    Toast.makeText(AddConsumerInfosActivity.this,"添加成功",Toast.LENGTH_LONG).show();
+                                    finish();
+                                }
+                            });
                         }else {
                             Toast.makeText(AddConsumerInfosActivity.this,"添加失败",Toast.LENGTH_LONG).show();
                         }

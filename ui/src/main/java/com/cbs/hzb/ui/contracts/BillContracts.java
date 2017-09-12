@@ -43,6 +43,6 @@ public interface BillContracts {
 		/**
 		 * 加载缓存
 		 */
-		public void startCacheLoading(Context context);
+		public void startCacheLoading(Context context, BillList.SyncLoadBillLisetner syncLoadBillLisetner);
 	}
 }

@@ -16,11 +16,30 @@ import com.cbs.common.db.orm.annotation.Unique;
 public class ConsumerInfos extends BaseModel{
 	public static final String TABLE_NAME = "ConsumerInfos";
 
+	/**
+	 * 表唯一id
+	 */
+	@Unique
+	@Column(name = COLUMN_UNIQUE_ID)
+	protected int uniqueId = DEFAULT_VALUE_INTEGER;
+
+	/**
+	 * 关联billItemId
+	 */
 	@Column(name = COLUMN_ID)
 	protected int id = DEFAULT_VALUE_INTEGER;
 
+	/**
+	 * 操作人Id
+	 */
 	@Column(name = COLUMN_HOLDERSID)
 	protected String holdersId = DEFAULT_VALUE_STRING;
+
+	/**
+	 * 消费记录id号
+	 */
+	@Column(name = COLUMN_CID)
+	protected String time = DEFAULT_VALUE_STRING;
 
 	@Column(name = COLUMN_DESCRIBE)
 	protected String describe = DEFAULT_VALUE_STRING;
@@ -33,9 +52,6 @@ public class ConsumerInfos extends BaseModel{
 
 	@Column(name = COLUMN_TIME)
 	protected String cid = DEFAULT_VALUE_STRING;
-
-	@Column(name = COLUMN_CID)
-	protected String time = DEFAULT_VALUE_STRING;
 
 	public String getCid() {
 		return cid;

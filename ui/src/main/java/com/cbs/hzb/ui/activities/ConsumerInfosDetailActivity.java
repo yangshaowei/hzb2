@@ -78,18 +78,11 @@ public class ConsumerInfosDetailActivity extends BaseActivity implements Consume
     @Override
     protected void onResume() {
         super.onResume();
-        BillList.getBillList().loadBillListFromNet(this, new BillList.SyncLoadBillLisetner() {
-            @SuppressLint("NewApi")
-            @Override
-            public void loaderFinished() {
-                ConsumerInfosPresenterImpl consumerInfosPresenter = new ConsumerInfosPresenterImpl(ConsumerInfosDetailActivity.this,ConsumerInfosDetailActivity.this);
-                SimpleBill simpleBill = BillList.getBillList().getSimpleBillById(billItemId);
-                consumerInfosPresenter.calConsumer(simpleBill.getConsumerInfos());
-                consumerInfosAdapter = new ConsumerInfosAdapter(ConsumerInfosDetailActivity.this, simpleBill.getConsumerInfos());
-                recyclerView.setAdapter(consumerInfosAdapter);
-            }
-        });
-
+        ConsumerInfosPresenterImpl consumerInfosPresenter = new ConsumerInfosPresenterImpl(ConsumerInfosDetailActivity.this,ConsumerInfosDetailActivity.this);
+        SimpleBill simpleBill = BillList.getBillList().getSimpleBillById(billItemId);
+        consumerInfosPresenter.calConsumer(simpleBill.getConsumerInfos());
+        consumerInfosAdapter = new ConsumerInfosAdapter(ConsumerInfosDetailActivity.this, simpleBill.getConsumerInfos());
+        recyclerView.setAdapter(consumerInfosAdapter);
     }
 
     @Override

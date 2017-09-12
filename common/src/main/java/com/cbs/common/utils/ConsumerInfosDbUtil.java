@@ -52,12 +52,12 @@ public class ConsumerInfosDbUtil {
      * 插入对应账单id的全部消费记录
      * @param
      */
-    public void insertAll(String queryId, List<ConsumerInfo> consumerInfosList) {
+    public void insertAll(String billItemId, List<ConsumerInfo> consumerInfosList) {
         SQLiteDatabase dbw = dbHelper.getWritableDatabase();
         if (dbw.isOpen()) {
             for(ConsumerInfo consumerInfo : consumerInfosList){
                 ContentValues values = new ContentValues();
-                values.put(BaseModel.COLUMN_ID, queryId);
+                values.put(BaseModel.COLUMN_ID, billItemId);
                 values.put(BaseModel.COLUMN_HOLDERSID, consumerInfo.getHoldersId());
                 values.put(BaseModel.COLUMN_DESCRIBE, consumerInfo.getDescribe());
                 values.put(BaseModel.COLUMN_TYPE, consumerInfo.getType());
@@ -127,6 +127,7 @@ public class ConsumerInfosDbUtil {
                         consumerInfos.setType(type);
                         consumerInfos.setSum(sum);
                         consumerInfos.setTime(time);
+                        consumerInfos.setCid(cid);
                         consumerInfosList.add(consumerInfos);
                     }
                 }

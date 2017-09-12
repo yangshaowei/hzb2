@@ -30,9 +30,10 @@ public class BillPresenterImpl implements BillContracts.Presenter{
         adapter.notifyDataSetChanged();
     }
 
-    @Override
-    public void startCacheLoading(Context context) {
-
+    /**
+     * 加载缓存
+     */
+    public void startCacheLoading(Context context, BillList.SyncLoadBillLisetner syncLoadBillLisetner) {
+        BillList.getBillList().loadBillListFromNet(context, syncLoadBillLisetner);
     }
-
 }

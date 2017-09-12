@@ -76,12 +76,14 @@ public class SimpleBill extends ShareBill implements Parcelable {
 
         int consumerInfosSize = in.readInt();
         for(int i = 0; i < consumerInfosSize; i++){
-            consumerInfos.get(i).setHoldersId(in.readString());
-            consumerInfos.get(i).setType(in.readString());
-            consumerInfos.get(i).setSum(in.readString());
-            consumerInfos.get(i).setTime(in.readString());
-            consumerInfos.get(i).setDescribe(in.readString());
-            consumerInfos.get(i).setCid(in.readString());
+            ConsumerInfo consumerInfo = new ConsumerInfo();
+            consumerInfo.setHoldersId(in.readString());
+            consumerInfo.setType(in.readString());
+            consumerInfo.setSum(in.readString());
+            consumerInfo.setTime(in.readString());
+            consumerInfo.setDescribe(in.readString());
+            consumerInfo.setCid(in.readString());
+            consumerInfos.add(consumerInfo);
         }
 
         String b = in.readString();

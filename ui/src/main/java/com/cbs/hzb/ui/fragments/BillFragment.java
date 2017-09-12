@@ -16,6 +16,7 @@ import android.widget.Button;
 import com.cbs.bean.BillItem;
 import com.cbs.bean.Data;
 import com.cbs.bean.Detail;
+import com.cbs.bill.data.BillList;
 import com.cbs.bill.model.SimpleBill;
 import com.cbs.common.utils.BillMessageDbUtil;
 import com.cbs.common.utils.PreferenceHelper.PreferenceConstant;
@@ -61,16 +62,22 @@ public class BillFragment extends BaseFragment implements View.OnClickListener{
         presenter = new BillPresenterImpl();
         WrapContentLinearLayoutManager linearLayoutManager = new WrapContentLinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(linearLayoutManager);
-        billAdapter = new BillAdapter(getContext(), presenter.getBillList());
-        billAdapter.setOnItemClickListener(new BillAdapter.OnItemClickListener() {
+
+        presenter.startCacheLoading(getContext(), new BillList.SyncLoadBillLisetner() {
             @Override
-            public void onItemClick(View view, int position) {
-                //跳转详细信息
-                SimpleBill simpleBill = billAdapter.getItem(position);
-                ConsumerInfosDetailActivity.show(getContext(), simpleBill);
+            public void loaderFinished() {
+                billAdapter = new BillAdapter(getContext(), presenter.getBillList());
+                billAdapter.setOnItemClickListener(new BillAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        //跳转详细信息
+                        SimpleBill simpleBill = billAdapter.getItem(position);
+                        ConsumerInfosDetailActivity.show(getContext(), simpleBill);
+                    }
+                });
+                recyclerView.setAdapter(billAdapter);
             }
         });
-        recyclerView.setAdapter(billAdapter);
     }
 
     @Override

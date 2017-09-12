@@ -34,6 +34,11 @@ public class BaseModel implements Serializable {
     /**
      * DB字段名
      */
+    public static final String COLUMN_UNIQUE_ID = " uniqueId";
+
+    /**
+     * DB字段名
+     */
     public static final String COLUMN_ID = "id";
 
     /**
