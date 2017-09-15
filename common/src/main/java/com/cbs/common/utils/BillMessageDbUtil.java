@@ -67,6 +67,22 @@ public class BillMessageDbUtil {
     }
 
     /**
+     * 根据账单id,更新列
+     * @param id
+     * @param columnName
+     * @param obj
+     */
+    public void updateCol(String id, String columnName, boolean obj){
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues cv = new ContentValues();  //实例化ContentValues
+        cv.put(columnName,obj);  //添加要更改的字段及内容
+        String whereClause = "id=?";  //修改条件
+        String[] whereArgscode = {id};  //修改条件的参数
+        db.update(BillMessage.TABLE_NAME,cv,whereClause,whereArgscode);  //执行修改
+    }
+
+
+    /**
      * 删除
      * @param id
      */
@@ -159,7 +175,11 @@ public class BillMessageDbUtil {
 
                     billItem.setId(id);
                     billItem.setHoldersId(holderId);
-                    billItem.setBalance(Boolean.valueOf(isBalance));
+                    if("1".equals(isBalance)){
+                        billItem.setBalance(true);
+                    }else {
+                        billItem.setBalance(false);
+                    }
                     Detail detail = new Detail();
                     detail.setDayConsume(dayConsume);
                     detail.setMonConsume(monConsume);

@@ -44,5 +44,9 @@
         <activity android:name=".ui.activities.AddConsumerInfosActivity"
             android:windowSoftInputMode="adjustResize"
             android:screenOrientation="portrait"/>
+
+        <activity android:name=".ui.activities.BalanceActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:screenOrientation="portrait"/>
     </application>
 </manifest>

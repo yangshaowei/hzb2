@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.cbs.bill.data.BillList;
 import com.cbs.bill.model.SimpleBill;
 import com.cbs.hzb.R;
+import com.cbs.hzb.ui.activities.BalanceActivity;
 
 
 /**
@@ -44,6 +45,11 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.ViewHolder> {
         holder.tv_time.setText(simpleBill.getCreatTime());
         holder.tv_holdersId.setText(simpleBill.getHoldersId());
         holder.tv_title.setText(simpleBill.getTitle());
+        if(simpleBill.isBalance){
+            holder.tv_balance.setText("已结算");
+        }else {
+            holder.tv_balance.setText("未结算");
+        }
         holder.tv_delect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,7 +67,7 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.ViewHolder> {
         holder.tv_balance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "订单号 : " + simpleBill.getId() + " 被结算", Toast.LENGTH_LONG).show();
+                BalanceActivity.show(mContext, simpleBill);
             }
         });
     }

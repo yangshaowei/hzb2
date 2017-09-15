@@ -6,6 +6,7 @@ import android.os.Parcelable;
 
 import java.net.InetAddress;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import com.cbs.bean.ConsumerInfo;
 
@@ -20,6 +21,15 @@ public class SimpleBill extends ShareBill implements Parcelable {
     private String allConsume;
     private String title;
     private List<ConsumerInfo> consumerInfos = new ArrayList<>();
+    private HashMap<String,String> holderConsume = new HashMap<String,String>(); //每个人消费总额
+
+    public HashMap<String, String> getHolderConsume() {
+        return holderConsume;
+    }
+
+    public void setHolderConsume(HashMap<String, String> holderConsume) {
+        this.holderConsume = holderConsume;
+    }
 
     public String getDayConsume() {
         return dayConsume;
