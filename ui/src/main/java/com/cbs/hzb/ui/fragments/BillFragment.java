@@ -66,7 +66,7 @@ public class BillFragment extends BaseFragment implements View.OnClickListener{
         presenter.startCacheLoading(getContext(), new BillList.SyncLoadBillLisetner() {
             @Override
             public void loaderFinished() {
-                billAdapter = new BillAdapter(getContext(), presenter.getBillList());
+                billAdapter = new BillAdapter(getActivity(), presenter.getBillList());
                 billAdapter.setOnItemClickListener(new BillAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {

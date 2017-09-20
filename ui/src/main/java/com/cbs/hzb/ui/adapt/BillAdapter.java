@@ -1,5 +1,6 @@
 package com.cbs.hzb.ui.adapt;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,6 +14,8 @@ import com.cbs.bill.data.BillList;
 import com.cbs.bill.model.SimpleBill;
 import com.cbs.hzb.R;
 import com.cbs.hzb.ui.activities.BalanceActivity;
+import com.cbs.hzb.ui.dialogs.TwoImageDialog;
+import com.cbs.hzb.ui.presenters.ShareAppPresenter;
 
 
 /**
@@ -21,14 +24,14 @@ import com.cbs.hzb.ui.activities.BalanceActivity;
 
 public class BillAdapter extends RecyclerView.Adapter<BillAdapter.ViewHolder> {
 
-    private Context mContext;
+    private Activity mActivity;
 
     private BillList mList;
 
     private OnItemClickListener mOnItemClickListener;
 
-    public BillAdapter(Context context, BillList list) {
-        mContext = context;
+    public BillAdapter(Activity activity, BillList list) {
+        mActivity = activity;
         mList = list;
     }
 
@@ -53,21 +56,36 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.ViewHolder> {
         holder.tv_delect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "订单号 : " + simpleBill.getId() + " 被删除", Toast.LENGTH_LONG).show();
+                Toast.makeText(mActivity, "订单号 : " + simpleBill.getId() + " 被删除", Toast.LENGTH_LONG).show();
             }
         });
 
         holder.tv_share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "订单号 : " + simpleBill.getId() + " 被分享", Toast.LENGTH_LONG).show();
+                TwoImageDialog twoImageDialog = new TwoImageDialog(mActivity);
+                twoImageDialog.setOnQQListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ShareAppPresenter shareAppPresenter = new ShareAppPresenter(mActivity);
+                        shareAppPresenter.share2QQ(mActivity);
+                    }
+                });
+                twoImageDialog.setOnWechatListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ShareAppPresenter shareAppPresenter = new ShareAppPresenter(mActivity);
+                        shareAppPresenter.share2WX();
+                    }
+                });
+                twoImageDialog.show();
             }
         });
 
         holder.tv_balance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BalanceActivity.show(mContext, simpleBill);
+                BalanceActivity.show(mActivity, simpleBill);
             }
         });
     }
