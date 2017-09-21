@@ -22,6 +22,8 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import java.io.File;
 
+import cn.jpush.android.api.JPushInterface;
+
 
 /**
  * Created by yangshaowei on 17/4/20.
@@ -43,7 +45,9 @@ public class MyApplication extends Application {
         setDownLoadPath();//在okgo初始化之后
 
 //        channel=getApplicationMetaValue("UMENG_CHANNEL");
-
+        //初始化推送
+        JPushInterface.setDebugMode(true); 	// 设置开启日志,发布时请关闭日志
+        JPushInterface.init(this);     		// 初始化 JPush
     }
 
     private void initImageLoader(){
