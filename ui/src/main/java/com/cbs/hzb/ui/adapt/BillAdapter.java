@@ -1,5 +1,6 @@
 package com.cbs.hzb.ui.adapt;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,6 +13,9 @@ import android.widget.Toast;
 import com.cbs.bill.data.BillList;
 import com.cbs.bill.model.SimpleBill;
 import com.cbs.hzb.R;
+import com.cbs.hzb.ui.activities.BalanceActivity;
+import com.cbs.hzb.ui.dialogs.TwoImageDialog;
+import com.cbs.hzb.ui.presenters.ShareAppPresenter;
 
 
 /**
@@ -20,14 +24,14 @@ import com.cbs.hzb.R;
 
 public class BillAdapter extends RecyclerView.Adapter<BillAdapter.ViewHolder> {
 
-    private Context mContext;
+    private Activity mActivity;
 
     private BillList mList;
 
     private OnItemClickListener mOnItemClickListener;
 
-    public BillAdapter(Context context, BillList list) {
-        mContext = context;
+    public BillAdapter(Activity activity, BillList list) {
+        mActivity = activity;
         mList = list;
     }
 
@@ -43,24 +47,45 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.ViewHolder> {
         holder.tv_id.setText(simpleBill.getId());
         holder.tv_time.setText(simpleBill.getCreatTime());
         holder.tv_holdersId.setText(simpleBill.getHoldersId());
+        holder.tv_title.setText(simpleBill.getTitle());
+        if(simpleBill.isBalance){
+            holder.tv_balance.setText("已结算");
+        }else {
+            holder.tv_balance.setText("未结算");
+        }
         holder.tv_delect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "订单号 : " + simpleBill.getId() + " 被删除", Toast.LENGTH_LONG).show();
+                Toast.makeText(mActivity, "订单号 : " + simpleBill.getId() + " 被删除", Toast.LENGTH_LONG).show();
             }
         });
 
         holder.tv_share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "订单号 : " + simpleBill.getId() + " 被分享", Toast.LENGTH_LONG).show();
+                TwoImageDialog twoImageDialog = new TwoImageDialog(mActivity);
+                twoImageDialog.setOnQQListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ShareAppPresenter shareAppPresenter = new ShareAppPresenter(mActivity);
+                        shareAppPresenter.share2QQ(mActivity);
+                    }
+                });
+                twoImageDialog.setOnWechatListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ShareAppPresenter shareAppPresenter = new ShareAppPresenter(mActivity);
+                        shareAppPresenter.share2WX();
+                    }
+                });
+                twoImageDialog.show();
             }
         });
 
         holder.tv_balance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "订单号 : " + simpleBill.getId() + " 被结算", Toast.LENGTH_LONG).show();
+                BalanceActivity.show(mActivity, simpleBill);
             }
         });
     }
@@ -89,6 +114,7 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.ViewHolder> {
         TextView tv_balance;
         TextView tv_share;
         TextView tv_delect;
+        TextView tv_title;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -99,6 +125,7 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.ViewHolder> {
             tv_balance = (TextView) itemView.findViewById(R.id.tv_balance);
             tv_share = (TextView) itemView.findViewById(R.id.tv_share);
             tv_delect = (TextView) itemView.findViewById(R.id.tv_delect);
+            tv_title = (TextView) itemView.findViewById(R.id.tv_title);
         }
 
         @Override

@@ -8,9 +8,9 @@ import com.cbs.bean.BillItem;
 
 public class CreatBillRequestBody {
 
-    private String account;
-    private String password;
-    private BillItem billItem;
+    private String account = null;
+    private String password = null;
+    private BillItem billItem = null;
 
     public String getAccount() {
         return account;

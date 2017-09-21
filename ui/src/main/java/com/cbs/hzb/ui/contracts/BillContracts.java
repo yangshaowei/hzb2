@@ -4,10 +4,11 @@ import android.content.Context;
 
 import com.cbs.bill.data.BillList;
 import com.cbs.bill.model.SimpleBill;
+import com.cbs.hzb.ui.adapt.BillAdapter;
 
 /**
  * Created by yangshaowei on 2017/3/22.
- * 搜索联系人
+ *
  */
 
 public interface BillContracts {
@@ -33,5 +34,15 @@ public interface BillContracts {
 		 * 获取列表
 		 */
 		public BillList getBillList();
+
+		/**
+		 * 通知数据改变
+		 */
+		public void notifyDataChange(Context context, BillAdapter adapter);
+
+		/**
+		 * 加载缓存
+		 */
+		public void startCacheLoading(Context context, BillList.SyncLoadBillLisetner syncLoadBillLisetner);
 	}
 }

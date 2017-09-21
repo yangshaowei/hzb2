@@ -48,7 +48,10 @@ public class SplashActivity extends BaseActivity{
         time = System.currentTimeMillis();
         mImageViews = new ArrayList<View>();
         mViewPager = (ViewPager) findViewById(R.id.splash_view_pager);
-        initViewPagerContent();
+        //测试取消滚动页
+//        initViewPagerContent();
+        Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+        startActivity(intent);
     }
 
     private void initViewPagerContent() {
@@ -89,7 +92,7 @@ public class SplashActivity extends BaseActivity{
 
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+        Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
         startActivity(intent);
     }
 

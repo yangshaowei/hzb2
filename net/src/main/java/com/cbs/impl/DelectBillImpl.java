@@ -1,12 +1,7 @@
 package com.cbs.impl;
 
 import com.cbs.domain.DelectBillRequestBody;
-import com.cbs.domain.ResponeBody;
 import com.cbs.model.RequestModel;
-import com.google.gson.Gson;
-
-import okhttp3.Call;
-import okhttp3.Response;
 
 /**
  * Created by yangshaowei on 2017/5/9.

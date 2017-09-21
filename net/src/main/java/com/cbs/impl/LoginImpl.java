@@ -1,15 +1,8 @@
 package com.cbs.impl;
 
-import android.content.Context;
-
 import com.cbs.Constant.AppConstant;
 import com.cbs.domain.LoginRequestBody;
-import com.cbs.domain.ResponeBody;
 import com.cbs.model.RequestModel;
-import com.google.gson.Gson;
-
-import okhttp3.Call;
-import okhttp3.Response;
 
 /**
  * Created by yangshaowei on 2017/5/9.

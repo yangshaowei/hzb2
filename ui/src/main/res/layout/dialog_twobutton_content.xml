@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="248dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="248dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dip"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        >
+        <EditText
+            android:id="@+id/tv_content"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:hint="请输入账单名称"
+            android:textColor="#404040"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_delect"
+        android:layout_width="248dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="20dip"
+        android:gravity="right"
+        android:orientation="horizontal"
+        >
+        <Button
+            android:id="@+id/bt_button1"
+            android:layout_width="64dp"
+            android:layout_height="36dp"
+            android:layout_marginRight="8dp"
+            android:text="button1"
+            android:textColor="#404040"
+            android:textSize="13sp" />
+        <Button
+            android:id="@+id/bt_button2"
+            android:layout_width="64dp"
+            android:layout_height="36dp"
+            android:layout_marginRight="8dp"
+            android:text="button2"
+            android:textColor="#f7b115"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+
+</LinearLayout>

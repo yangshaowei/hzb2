@@ -1,10 +1,16 @@
 package com.cbs.hzb.ui.activities;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 
+import com.cbs.bill.data.BillList;
 import com.cbs.domain.RegisterRequestBody;
 import com.cbs.hzb.R;
 import com.cbs.hzb.ui.adapt.HomeFragmentAdapter;
@@ -12,10 +18,14 @@ import com.cbs.hzb.ui.fragments.BillFragment;
 import com.cbs.hzb.ui.fragments.CommunityFragment;
 import com.cbs.hzb.ui.fragments.DutyFragment;
 import com.cbs.hzb.ui.fragments.MeFragment;
+import com.cbs.hzb.ui.jpush.ExampleUtil;
+import com.cbs.hzb.ui.jpush.LocalBroadcastManager;
 import com.cbs.hzb.ui.view.HomeTabViewPager;
 import com.cbs.impl.RegisterImpl;
 
 import java.util.ArrayList;
+
+import cn.jpush.android.api.JPushInterface;
 
 
 /**
@@ -24,6 +34,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends BaseActivity{
 
+    public static boolean isForeground = false;
     private HomeTabViewPager mHomeView;
     private ViewPager mViewPager;
     private ArrayList<Fragment> mFragments;
@@ -49,6 +60,8 @@ public class MainActivity extends BaseActivity{
 
     @Override
     protected void init() {
+        //推送
+        JPushInterface.init(getApplicationContext());
         initToolBar();
 
         mViewPager = mHomeView.getViewPager();
@@ -72,6 +85,7 @@ public class MainActivity extends BaseActivity{
         });
         initFragment();
         setToolBarTitle(0);
+
     }
 
     private void initToolBar() {
@@ -124,6 +138,8 @@ public class MainActivity extends BaseActivity{
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        //推送
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mMessageReceiver);
     }
 
     @Override
@@ -134,6 +150,46 @@ public class MainActivity extends BaseActivity{
     @Override
     protected void onStop() {
         super.onStop();
+    }
+
+    //推送
+    //for receive customer msg from jpush server
+    private MessageReceiver mMessageReceiver;
+    public static final String MESSAGE_RECEIVED_ACTION = "com.example.jpushdemo.MESSAGE_RECEIVED_ACTION";
+    public static final String KEY_TITLE = "title";
+    public static final String KEY_MESSAGE = "message";
+    public static final String KEY_EXTRAS = "extras";
+
+    public void registerMessageReceiver() {
+        mMessageReceiver = new MessageReceiver();
+        IntentFilter filter = new IntentFilter();
+        filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
+        filter.addAction(MESSAGE_RECEIVED_ACTION);
+        LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver, filter);
+    }
+
+    public class MessageReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            try {
+                if (MESSAGE_RECEIVED_ACTION.equals(intent.getAction())) {
+                    String messge = intent.getStringExtra(KEY_MESSAGE);
+                    String extras = intent.getStringExtra(KEY_EXTRAS);
+                    StringBuilder showMsg = new StringBuilder();
+                    showMsg.append(KEY_MESSAGE + " : " + messge + "\n");
+                    if (!ExampleUtil.isEmpty(extras)) {
+                        showMsg.append(KEY_EXTRAS + " : " + extras + "\n");
+                    }
+                    setCostomMsg(showMsg.toString());
+                }
+            } catch (Exception e){
+            }
+        }
+    }
+
+    private void setCostomMsg(String msg){
+
     }
 
 }

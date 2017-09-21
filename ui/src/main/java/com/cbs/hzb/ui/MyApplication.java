@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Environment;
 
+import com.cbs.bill.data.BillList;
 import com.cbs.hzb.R;
 import com.cbs.okserver.download.DownloadService;
 import com.lzy.okgo.OkGo;
@@ -20,6 +21,8 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 
 import java.io.File;
+
+import cn.jpush.android.api.JPushInterface;
 
 
 /**
@@ -38,12 +41,13 @@ public class MyApplication extends Application {
         mContext = this;
 
         initImageLoader();
-
         initOkHttpUtils();
         setDownLoadPath();//在okgo初始化之后
 
 //        channel=getApplicationMetaValue("UMENG_CHANNEL");
-
+        //初始化推送
+        JPushInterface.setDebugMode(true); 	// 设置开启日志,发布时请关闭日志
+        JPushInterface.init(this);     		// 初始化 JPush
     }
 
     private void initImageLoader(){
