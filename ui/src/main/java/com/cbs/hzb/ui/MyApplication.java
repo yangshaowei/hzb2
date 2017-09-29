@@ -21,6 +21,8 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 
 import java.io.File;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import cn.jpush.android.api.JPushInterface;
 
@@ -48,6 +50,13 @@ public class MyApplication extends Application {
         //初始化推送
         JPushInterface.setDebugMode(true); 	// 设置开启日志,发布时请关闭日志
         JPushInterface.init(this);     		// 初始化 JPush
+        //将RegistrationID保存至服务器
+        String regId = JPushInterface.getRegistrationID(this);
+        JPushInterface.setAlias(this, 0, regId);
+        //设置标签
+        Set<String> tagSet = new LinkedHashSet<String>();
+        tagSet.add("110");
+        JPushInterface.setTags(this, 0, tagSet);
     }
 
     private void initImageLoader(){
