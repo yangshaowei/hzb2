@@ -8,20 +8,16 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 
-import com.cbs.bill.data.BillList;
-import com.cbs.domain.RegisterRequestBody;
 import com.cbs.hzb.R;
 import com.cbs.hzb.ui.adapt.HomeFragmentAdapter;
 import com.cbs.hzb.ui.fragments.BillFragment;
 import com.cbs.hzb.ui.fragments.CommunityFragment;
-import com.cbs.hzb.ui.fragments.DutyFragment;
+import com.cbs.hzb.ui.fragments.AffairFragment;
 import com.cbs.hzb.ui.fragments.MeFragment;
 import com.cbs.hzb.ui.jpush.ExampleUtil;
 import com.cbs.hzb.ui.jpush.LocalBroadcastManager;
 import com.cbs.hzb.ui.view.HomeTabViewPager;
-import com.cbs.impl.RegisterImpl;
 
 import java.util.ArrayList;
 
@@ -42,7 +38,7 @@ public class MainActivity extends BaseActivity{
 
     private BillFragment billFragment;
     private CommunityFragment communityFragment;
-    private DutyFragment dutyFragment;
+    private AffairFragment affairFragment;
     private MeFragment meFragment;
     
     @Override
@@ -104,8 +100,8 @@ public class MainActivity extends BaseActivity{
         communityFragment = new CommunityFragment();
         mFragments.add(communityFragment);
 
-        dutyFragment = new DutyFragment();
-        mFragments.add(dutyFragment);
+        affairFragment = new AffairFragment();
+        mFragments.add(affairFragment);
 
         meFragment = new MeFragment();
         mFragments.add(meFragment);

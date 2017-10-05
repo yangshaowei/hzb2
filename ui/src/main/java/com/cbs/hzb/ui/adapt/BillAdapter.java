@@ -14,6 +14,7 @@ import com.cbs.bill.data.BillList;
 import com.cbs.bill.model.SimpleBill;
 import com.cbs.hzb.R;
 import com.cbs.hzb.ui.activities.BalanceActivity;
+import com.cbs.hzb.ui.contracts.BillContracts;
 import com.cbs.hzb.ui.dialogs.TwoImageDialog;
 import com.cbs.hzb.ui.presenters.ShareAppPresenter;
 
@@ -30,9 +31,12 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.ViewHolder> {
 
     private OnItemClickListener mOnItemClickListener;
 
-    public BillAdapter(Activity activity, BillList list) {
+    private BillContracts.Presenter mPresenter;
+
+    public BillAdapter(Activity activity, BillList list, BillContracts.Presenter presenter) {
         mActivity = activity;
         mList = list;
+        mPresenter = presenter;
     }
 
     @Override
@@ -63,22 +67,7 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.ViewHolder> {
         holder.tv_share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TwoImageDialog twoImageDialog = new TwoImageDialog(mActivity);
-                twoImageDialog.setOnQQListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        ShareAppPresenter shareAppPresenter = new ShareAppPresenter(mActivity);
-                        shareAppPresenter.share2QQ(mActivity);
-                    }
-                });
-                twoImageDialog.setOnWechatListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        ShareAppPresenter shareAppPresenter = new ShareAppPresenter(mActivity);
-                        shareAppPresenter.share2WX();
-                    }
-                });
-                twoImageDialog.show();
+                mPresenter.getInviteLink(mActivity, simpleBill.getId());
             }
         });
 

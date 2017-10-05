@@ -1,5 +1,6 @@
 package com.cbs.hzb.ui.contracts;
 
+import android.app.Activity;
 import android.content.Context;
 
 import com.cbs.bill.data.BillList;
@@ -44,5 +45,12 @@ public interface BillContracts {
 		 * 加载缓存
 		 */
 		public void startCacheLoading(Context context, BillList.SyncLoadBillLisetner syncLoadBillLisetner);
+
+		/**
+		 * 获取分享链接
+		 * @param activity
+		 * @param billId
+		 */
+		public void getInviteLink(final Activity activity, final String billId);
 	}
 }

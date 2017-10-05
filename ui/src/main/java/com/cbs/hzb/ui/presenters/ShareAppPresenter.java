@@ -45,7 +45,7 @@ public class ShareAppPresenter implements ShareAppContract.Presenter {
     }
 
     @Override
-    public void share2QQ(Activity activity) {
+    public void share2QQ(Activity activity, String shareUrl) {
         boolean isInstall = CommonUtils.checkApkExist(context, "com.tencent.mobileqq");
         boolean isInstallLite = CommonUtils.checkApkExist(context, "com.tencent.qqlite");
         if (!isInstall && !isInstallLite) {
@@ -60,7 +60,7 @@ public class ShareAppPresenter implements ShareAppContract.Presenter {
         params.putInt(QQShare.SHARE_TO_QQ_KEY_TYPE, QQShare.SHARE_TO_QQ_TYPE_DEFAULT);
         params.putString(QQShare.SHARE_TO_QQ_TITLE, context.getString(R.string.qq_title));
         params.putString(QQShare.SHARE_TO_QQ_SUMMARY, getWXShareMsg());
-        params.putString(QQShare.SHARE_TO_QQ_TARGET_URL, context.getString(R.string.share_app_msg_url));
+        params.putString(QQShare.SHARE_TO_QQ_TARGET_URL, shareUrl);
         params.putString(QQShare.SHARE_TO_QQ_IMAGE_URL, context.getString(R.string.qq_image_url));
         params.putString(QQShare.SHARE_TO_QQ_APP_NAME, context.getString(R.string.qq_app_name));
         Tencent tencent = Tencent.createInstance(Config.QQ_APPID, context);

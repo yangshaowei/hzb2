@@ -9,7 +9,7 @@ import android.app.Activity;
 public interface ShareAppContract {
 
     interface Presenter extends BasePresenter {
-        void share2QQ(Activity activity);
+        void share2QQ(Activity activity, String shareUrl);
 
         void share2WX();
 
